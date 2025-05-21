@@ -143,7 +143,6 @@ def upload_file():
 
 # certificate #
 
-import os
 
 @app.route('/generate_certificate', methods=['POST'])
 def generate_certificate():
@@ -169,7 +168,7 @@ def generate_certificate():
     c.drawCentredString(300, 650, f"Presented to: {name}")
     c.drawCentredString(300, 620, f"For successfully completing the {role} test")
     c.drawCentredString(300, 590, f"Score: {score}%")
-    c.drawCentredString(300, 550, "TechJob Assistant Platform")
+    c.drawCentredString(300, 550, "TechCareerHub Platform")
 
     c.showPage()
     c.save()
@@ -179,7 +178,7 @@ def generate_certificate():
 # ---------------- Routes for HTML ----------------
 @app.route('/')
 def index():
-    return render_template('dashboard.html')
+    return render_template('index.html')
 
 
 @app.route('/<page>')

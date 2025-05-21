@@ -7,6 +7,7 @@ const quizData = {
   javascript: [
     { question: "Which keyword is used to declare a variable in ES6?", options: ["var", "let", "const", "define"], answer: "let" },
     { question: "Which symbol is used for comments in JavaScript?", options: ["//", "/*", "#", "<!--"], answer: "//" }
+
   ],
   python: [
     { question: "What keyword is used to define a function in Python?", options: ["function", "def", "lambda", "fun"], answer: "def" },
