@@ -198,5 +198,205 @@
         "working_hours": "Full-Time",
         "salary": 4.5, 
         "skills": ["Customer Support", "Communication", "Problem Solving", "Technical Skills"]
+    },
+     {
+        "job_title": "AI Research Engineer",
+        "company_name": "NextGen AI",
+        "location": "Palo Alto, CA",
+        "job_description": "Conduct research in artificial intelligence and develop innovative AI models.",
+        "experience_years": 5,
+        "working_hours": "Full-Time",
+        "salary": 13.5,
+        "skills": ["Deep Learning", "NLP", "PyTorch", "Python", "AI Ethics"]
+    },
+    {
+        "job_title": "Mobile App Developer",
+        "company_name": "AppVenture",
+        "location": "San Diego, CA",
+        "job_description": "Develop and maintain mobile applications on iOS and Android platforms.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 10.5,
+        "skills": ["Flutter", "React Native", "iOS", "Android", "Java", "Swift"]
+    },
+    {
+        "job_title": "Network Security Analyst",
+        "company_name": "CyberSecure Ltd.",
+        "location": "Washington, D.C.",
+        "job_description": "Monitor and secure network systems against cyber threats and vulnerabilities.",
+        "experience_years": 4,
+        "working_hours": "Full-Time",
+        "salary": 11,
+        "skills": ["Network Security", "Firewalls", "Penetration Testing", "SIEM", "Cybersecurity"]
+    },
+    {
+        "job_title": "Blockchain Developer",
+        "company_name": "CryptoChain Corp.",
+        "location": "Remote",
+        "job_description": "Build decentralized applications and smart contracts on blockchain platforms.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 12,
+        "skills": ["Solidity", "Ethereum", "Smart Contracts", "Blockchain", "Web3.js"]
+    },
+    {
+        "job_title": "Graphic Designer",
+        "company_name": "Visual Studios",
+        "location": "Portland, OR",
+        "job_description": "Design visual content for digital and print media campaigns.",
+        "experience_years": 2,
+        "working_hours": "Full-Time",
+        "salary": 7,
+        "skills": ["Photoshop", "Illustrator", "InDesign", "Creativity", "Typography"]
+    },
+    {
+        "job_title": "Technical Writer",
+        "company_name": "DocuTech Solutions",
+        "location": "Philadelphia, PA",
+        "job_description": "Create user guides, manuals, and documentation for software products.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 6.5,
+        "skills": ["Technical Writing", "Documentation", "Markdown", "Confluence", "Git"]
+    },
+    {
+        "job_title": "Data Engineer",
+        "company_name": "BigData Systems",
+        "location": "Atlanta, GA",
+        "job_description": "Build and maintain scalable data pipelines and storage solutions.",
+        "experience_years": 4,
+        "working_hours": "Full-Time",
+        "salary": 11.5,
+        "skills": ["ETL", "Spark", "Python", "SQL", "Hadoop", "AWS"]
+    },
+    {
+        "job_title": "IT Support Specialist",
+        "company_name": "TechSupport Co.",
+        "location": "Phoenix, AZ",
+        "job_description": "Provide technical assistance and support for incoming queries and issues.",
+        "experience_years": 1,
+        "working_hours": "Full-Time",
+        "salary": 5,
+        "skills": ["Troubleshooting", "Windows", "Help Desk", "Networking", "Customer Support"]
+    },
+    {
+        "job_title": "Social Media Manager",
+        "company_name": "BuzzWave Media",
+        "location": "Las Vegas, NV",
+        "job_description": "Manage social media accounts and create engaging content to grow brand presence.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 7.5,
+        "skills": ["Social Media", "Analytics", "Content Creation", "Facebook Ads", "Instagram"]
+    },
+    {
+        "job_title": "Game Developer",
+        "company_name": "PlayNova Studios",
+        "location": "Raleigh, NC",
+        "job_description": "Design and develop interactive games for desktop and mobile platforms.",
+        "experience_years": 4,
+        "working_hours": "Full-Time",
+        "salary": 10,
+        "skills": ["Unity", "C#", "Game Design", "3D Modeling", "Animation"]
+    },
+     {
+        "job_title": "Electronics Design Engineer",
+        "company_name": "CircuitWorks Inc.",
+        "location": "San Jose, CA",
+        "job_description": "Design and test electronic circuits for embedded systems.",
+        "experience_years": 2,
+        "working_hours": "Full-Time",
+        "salary": 8,
+        "skills": ["PCB Design", "Embedded C", "Altium Designer", "Microcontrollers"]
+    },
+    {
+        "job_title": "Electrical Site Engineer",
+        "company_name": "PowerGrid Infra",
+        "location": "Dallas, TX",
+        "job_description": "Supervise electrical installations and ensure safety compliance on site.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 9,
+        "skills": ["Power Systems", "AutoCAD Electrical", "Site Supervision", "Safety Standards"]
+    },
+    {
+        "job_title": "Civil Engineer",
+        "company_name": "BuildSmart Projects",
+        "location": "Chicago, IL",
+        "job_description": "Oversee construction projects, prepare BOQs and manage site activities.",
+        "experience_years": 4,
+        "working_hours": "Full-Time",
+        "salary": 9.5,
+        "skills": ["AutoCAD", "Revit", "Project Management", "Structural Analysis"]
+    },
+    {
+        "job_title": "Junior Civil Engineer",
+        "company_name": "Urban Infra Pvt Ltd",
+        "location": "Atlanta, GA",
+        "job_description": "Assist in planning and executing civil engineering projects.",
+        "experience_years": 1,
+        "working_hours": "Full-Time",
+        "salary": 6.5,
+        "skills": ["AutoCAD", "Quantity Surveying", "Site Supervision"]
+    },
+    {
+        "job_title": "Embedded Systems Engineer",
+        "company_name": "EmbedTech Solutions",
+        "location": "Austin, TX",
+        "job_description": "Develop firmware and software for embedded devices.",
+        "experience_years": 2,
+        "working_hours": "Full-Time",
+        "salary": 8.5,
+        "skills": ["Embedded C", "RTOS", "ARM Cortex", "IoT"]
+    },
+    {
+        "job_title": "Power Systems Engineer",
+        "company_name": "Green Energy Inc.",
+        "location": "Denver, CO",
+        "job_description": "Design and simulate power distribution systems and renewable energy integrations.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 10,
+        "skills": ["ETAP", "PowerWorld", "MATLAB", "Electrical Design"]
+    },
+    {
+        "job_title": "Mechanical Design Engineer",
+        "company_name": "AutoMech Solutions",
+        "location": "Detroit, MI",
+        "job_description": "Design mechanical systems and components for automotive applications.",
+        "experience_years": 2,
+        "working_hours": "Full-Time",
+        "salary": 8,
+        "skills": ["SolidWorks", "AutoCAD", "GD&T", "FEA"]
+    },
+    {
+        "job_title": "HVAC Design Engineer",
+        "company_name": "Comfort Air Systems",
+        "location": "Phoenix, AZ",
+        "job_description": "Design HVAC systems for residential and commercial projects.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 9,
+        "skills": ["HVAC Design", "Duct Sizing", "HAP Software", "AutoCAD MEP"]
+    },
+    {
+        "job_title": "Telecom Engineer",
+        "company_name": "Global TeleNet",
+        "location": "New York, NY",
+        "job_description": "Install and maintain telecommunication systems and ensure network uptime.",
+        "experience_years": 2,
+        "working_hours": "Full-Time",
+        "salary": 7.5,
+        "skills": ["RF Planning", "Switching", "Networking", "Fiber Optics"]
+    },
+    {
+        "job_title": "Mechatronics Engineer",
+        "company_name": "RoboDynamics Corp.",
+        "location": "San Diego, CA",
+        "job_description": "Work on robotic systems combining mechanical, electronics, and software design.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 10.5,
+        "skills": ["PLC Programming", "Robot Operating System (ROS)", "Mechanical Design", "Sensors"]
     }
 ]
