@@ -1,0 +1,62 @@
+{
+    "Vikas": {
+        "email": "vikas@gmail.com",
+        "password": "scrypt:32768:8:1$C1coK63xdXgEpqbT$284474688df8be44b2752fcbf3be62f06e455a3273d4144118f572b7651118349c5a31cde51b50489aaf9f8594fe30468c59dc2759ad3a49dbb9cc436bd6b61f",
+        "certificates": [
+            {
+                "file": "Vikas_javascript_20250523131816.pdf",
+                "role": "javascript",
+                "score": 100,
+                "timestamp": "2025-05-23 13:18:16"
+            },
+            {
+                "file": "Vikas_javascript_20250523135709.pdf",
+                "role": "javascript",
+                "score": 100,
+                "timestamp": "2025-05-23 13:57:09"
+            },
+            {
+                "file": "Vikas_java_20250523135756.pdf",
+                "role": "java",
+                "score": 100,
+                "timestamp": "2025-05-23 13:57:56"
+            },
+            {
+                "file": "Vikas_frontend_2025-05-23_14-45-29.pdf",
+                "role": "frontend",
+                "score": 90,
+                "timestamp": "2025-05-23 14:45:29"
+            }
+        ]
+    },
+    "sundri": {
+        "email": "sundri@gmail.com",
+        "password": "scrypt:32768:8:1$We8nyTayTWoGLsHk$a3d234d9180aa375f1f99c1b98d09febbe6291a2926aac311c4448f5adf111cc9ca2bfef0a7b7bf11d0577880eccfca59d5bed5096cc1fcb777d1e3f83292a62",
+        "certificates": [
+            {
+                "file": "sundri_javascript_2025-05-23_14-33-58.pdf",
+                "role": "javascript",
+                "score": 100,
+                "timestamp": "2025-05-23 14:33:58"
+            }
+        ]
+    },
+    "hello": {
+        "email": "hello@gmail.com",
+        "password": "scrypt:32768:8:1$inSSMpifdb3ggvAw$0baf7816a21c5f10198af4e83b122c13e0fca86fb41bad4afec3a8e314a1de769035c6dbdc0aee336f1c24f9de178af912745fa0af7330f6a4f916f76e3a2c13",
+        "certificates": [
+            {
+                "file": "hello_python_20250523140701.pdf",
+                "role": "python",
+                "score": 100,
+                "timestamp": "2025-05-23 14:07:01"
+            },
+            {
+                "file": "hello_javascript_20250523142109.pdf",
+                "role": "javascript",
+                "score": 100,
+                "timestamp": "2025-05-23 14:21:09"
+            }
+        ]
+    }
+}

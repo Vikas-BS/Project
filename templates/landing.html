@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechCareer Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+    }
+    .backdrop {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .animated-text {
+      display: inline-block;
+      opacity: 1;
+      transform: translateY();
+      transition: all 1s ease-in;
+    }
+    #animatedTitle {
+      color: #ffffff;
+    }
+    .animated-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center">
+  <div class="backdrop w-full h-full flex flex-col justify-center items-center text-white text-center p-4">
+    <h1 id="animatedTitle" class="text-5xl font-bold mb-4"></h1>
+    <p class="text-xl mb-8">Unlock Your Future in Tech – Your Journey Starts Here!</p>
+    <div class="space-x-4">
+      <a href="{{ url_for('signup') }}" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition">Sign Up</a>
+      <a href="{{ url_for('login') }}" class="bg-white text-black hover:bg-gray-300 px-6 py-3 rounded-lg font-semibold transition">Login</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const title = "TechCareer Hub";
+      const titleElement = document.getElementById('animatedTitle');
+
+      function animateTitle(index) {
+        if (index < title.length) {
+          const span = document.createElement('span');
+          span.className = 'animated-text';
+          span.textContent = title[index];
+          titleElement.appendChild(span);
+
+          setTimeout(() => {
+            span.classList.add('visible');
+            animateTitle(index + 1);
+          }, 100);
+        }
+      }
+
+      animateTitle(0);
+    });
+  </script>
+</body>
+</html>

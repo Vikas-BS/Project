@@ -1,27 +1,103 @@
-from flask import Flask, request, jsonify, send_file, make_response
+from flask import Flask, request, jsonify, send_file, make_response, render_template, redirect, url_for, session, flash
 from flask_cors import CORS
-from flask import render_template
 from datetime import datetime
 from reportlab.lib.pagesizes import letter
-from reportlab.lib.units import inch
+from reportlab.pdfgen import canvas
 import PyPDF2
 import io
 import os
 import json
 import re
 import urllib.parse
-from reportlab.pdfgen import canvas
 import google.generativeai as genai
-
-
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
+app.secret_key = '6b298d9fea545fbd5263fb6cb92a3b32'  # Replace with a strong secret key
 CORS(app)
-# Configure the Generative AI API key
+
 genai.configure(api_key="AIzaSyAn_9wz5q5etT5_Bgm_aEh4HgMXuzIrrUI")  # Replace with your actual API key
 
-# ---------------- Chat Assistant ----------------
+USERS_FILE = 'users.json'
+
+CERT_DIR = "certificates"
+if not os.path.exists(CERT_DIR):
+    os.makedirs(CERT_DIR)
+
+def load_users():
+    if not os.path.exists(USERS_FILE):
+        return {}
+    with open(USERS_FILE, 'r') as f:
+        return json.load(f)
+
+def save_users(users):
+    with open(USERS_FILE, 'w') as f:
+        json.dump(users, f, indent=4)
+
+@app.route('/')
+def landing():
+    if 'username' in session:
+        return redirect(url_for('dashboard'))
+    return render_template('landing.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        users = load_users()
+        user = users.get(username)
+
+        if user and check_password_hash(user['password'], password):
+            session['username'] = username
+            flash('Login successful!')
+            return redirect(url_for('dashboard'))
+        else:
+            flash('Invalid username or password.')
+            return redirect(url_for('login'))
+    return render_template('login.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+
+        users = load_users()
+        if username in users:
+            flash('Username already exists. Please choose another.')
+            return redirect(url_for('signup'))
+
+        hashed_password = generate_password_hash(password)
+        users[username] = {'email': email, 'password': hashed_password}
+        save_users(users)
+
+        flash('Signup successful! Please log in.')
+        return redirect(url_for('login'))
+    return render_template('signup.html')
+
+@app.route('/dashboard')
+def dashboard():
+    if 'username' not in session:
+        flash('Please log in to access this page.')
+        return redirect(url_for('login'))
+
+    users = load_users()
+    username = session['username']
+    user_data = users.get(username, {})
+    certificates = user_data.get('certificates', [])
+
+    return render_template('index.html', username=username, certificates=certificates)
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    flash('You have been logged out.')
+    return redirect(url_for('landing'))
+
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
@@ -46,7 +122,6 @@ def chat():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
-# ---------------- Resume Upload + Job Recommendation ----------------
 def load_json_file(file_name):
     file_path = os.path.join(os.path.dirname(__file__), file_name)
     with open(file_path, "r", encoding="utf-8") as file:
@@ -83,9 +158,9 @@ def generate_job_search_url(skills):
                           'web development', 'programming', 'software', 'devops', 'sql']
     non_technical_keywords = ['management', 'sales', 'marketing', 'hr', 'customer service', 
                               'administrative', 'communication', 'creative', 'business']
-    
+
     is_technical = any(skill.lower() in technical_keywords for skill in skills)
-    
+
     base_url = "https://www.google.com/search"
     if is_technical:
         job_types = ["fullstack developer jobs", "backend developer jobs", "devops jobs"]
@@ -141,11 +216,11 @@ def upload_file():
         'show_apply_button': job_search_info['apply_button']
     })
 
-# certificate #
-
-
 @app.route('/generate_certificate', methods=['POST'])
 def generate_certificate():
+    if 'username' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+
     data = request.get_json()
     name = data.get("name")
     role = data.get("role")
@@ -154,32 +229,80 @@ def generate_certificate():
     if not name or not role or score is None:
         return jsonify({'error': 'Missing data'}), 400
 
-    cert_dir = "certificates"
-    if not os.path.exists(cert_dir):
-        os.makedirs(cert_dir)
+    username = session['username']
+    cert_dir = os.path.join("certificates", username)
+    os.makedirs(cert_dir, exist_ok=True)
 
-    file_path = os.path.join(cert_dir, f"{name.replace(' ', '_')}_{role}_{datetime.now().strftime('%Y%m%d%H%M%S')}.pdf")
+    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')  # <--- Fixed here
+    filename = f"{username}_{role}_{timestamp}.pdf"
+    file_path = os.path.join(cert_dir, filename)
 
-    c = canvas.Canvas(file_path, pagesize=letter)
-    c.setFont("Helvetica-Bold", 24)
-    c.drawCentredString(300, 700, "Certificate of Completion")
+    try:
+        # Generate PDF
+        c = canvas.Canvas(file_path, pagesize=letter)
+        c.setFont("Helvetica-Bold", 24)
+        c.drawCentredString(300, 700, "Certificate of Completion")
+        c.setFont("Helvetica", 18)
+        c.drawCentredString(300, 650, f"Presented to: {name}")
+        c.drawCentredString(300, 620, f"For successfully completing the {role} test")
+        c.drawCentredString(300, 590, f"Score: {score}%")
+        c.drawCentredString(300, 550, "TechCareerHub Platform")
+        c.showPage()
+        c.save()
 
-    c.setFont("Helvetica", 18)
-    c.drawCentredString(300, 650, f"Presented to: {name}")
-    c.drawCentredString(300, 620, f"For successfully completing the {role} test")
-    c.drawCentredString(300, 590, f"Score: {score}%")
-    c.drawCentredString(300, 550, "TechCareerHub Platform")
+        # Save certificate metadata
+        users = load_users()
+        user_data = users.get(username, {})
+        user_data.setdefault('certificates', []).append({
+            'file': filename,
+            'role': role,
+            'score': score,
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        })
+        users[username] = user_data
+        save_users(users)
 
-    c.showPage()
-    c.save()
+        return send_file(file_path, as_attachment=True)
 
-    return send_file(file_path, as_attachment=True)
+    except Exception as e:
+        return jsonify({'error': f'Certificate generation failed: {str(e)}'}), 500
 
-# ---------------- Routes for HTML ----------------
-@app.route('/')
-def index():
-    return render_template('index.html')
 
+
+@app.route('/certificates')
+def certificates():
+    if 'username' not in session:
+        flash('Please log in to view certificates.')
+        return redirect(url_for('login'))
+
+    username = session['username']
+    user_cert_dir = os.path.join("certificates", username)
+
+    cert_files = []
+    if os.path.exists(user_cert_dir):
+        for fname in os.listdir(user_cert_dir):
+            if fname.endswith(".pdf"):
+                parts = fname.replace(".pdf", "").split("_")
+                if len(parts) >= 3:
+                    cert_name = f"{parts[1]} ({parts[2]})"
+                    cert_files.append({
+                        "name": cert_name,
+                        "filename": fname
+                    })
+
+    return render_template('certificates.html', certificates=cert_files)
+
+@app.route('/view_certificate/<filename>')
+def view_certificate(filename):
+    if 'username' not in session:
+        flash('Please log in to view certificate.')
+        return redirect(url_for('login'))
+
+    username = session['username']
+    file_path = os.path.join("certificates", username, filename)
+    if os.path.exists(file_path):
+        return send_file(file_path)
+    return "Certificate not found", 404
 
 @app.route('/<page>')
 def render_page(page):
@@ -187,8 +310,6 @@ def render_page(page):
     if page in allowed_pages:
         return render_template(f'{page}.html')
     return "Page not found", 404
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
