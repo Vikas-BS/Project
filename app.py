@@ -11,12 +11,35 @@ import re
 import urllib.parse
 import google.generativeai as genai
 from werkzeug.security import generate_password_hash, check_password_hash
-
+import urllib.parse
+import docx2txt
+import spacy
+from spacy.matcher import PhraseMatcher
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import google.generativeai as genai
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.secret_key = '6b298d9fea545fbd5263fb6cb92a3b32'  # Replace with a strong secret key
 CORS(app)
 
 genai.configure(api_key="AIzaSyAn_9wz5q5etT5_Bgm_aEh4HgMXuzIrrUI")  # Replace with your actual API key
+nlp = spacy.load("en_core_web_sm")
+
+# === Skill Matcher Setup ===
+skill_list = [
+    "python", "java", "c++", "html", "css", "javascript", "sql",
+    "machine learning", "deep learning", "nlp", "react", "node.js",
+    "docker", "kubernetes", "git", "flask", "django", "excel", "tableau",
+    "data analysis", "data visualization", "pandas", "numpy", "tensorflow", "keras"
+]
+matcher = PhraseMatcher(nlp.vocab)
+patterns = [nlp(skill) for skill in skill_list]
+matcher.add("SKILLS", None, *patterns)
+
+# === User and File Setup ===
+USERS_FILE = 'users.json'
+CERT_DIR = "certificates"
+os.makedirs(CERT_DIR, exist_ok=True)
 
 USERS_FILE = 'users.json'
 
@@ -33,6 +56,51 @@ def load_users():
 def save_users(users):
     with open(USERS_FILE, 'w') as f:
         json.dump(users, f, indent=4)
+        
+        
+# === Resume Extraction Functions ===
+def extract_text_from_pdf(file_stream):
+    text = ""
+    reader = PyPDF2.PdfReader(file_stream)
+    for page in reader.pages:
+        text += page.extract_text() or ""
+    return text
+
+def extract_text_from_docx(file_stream):
+    temp_path = "temp_resume.docx"
+    with open(temp_path, "wb") as f:
+        f.write(file_stream.read())
+    text = docx2txt.process(temp_path)
+    os.remove(temp_path)
+    return text
+
+def clean_text(text):
+    return re.sub(r"\s+", " ", re.sub(r"[^A-Za-z0-9\s]", "", text)).lower()
+
+def extract_skills_spacy(text):
+    doc = nlp(text)
+    matches = matcher(doc)
+    return list(set([doc[start:end].text.lower() for _, start, end in matches]))
+
+def load_jobs():
+    with open("jobs.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def compute_job_similarity(resume_text, jobs):
+    job_descriptions = [job['job_description'] for job in jobs]
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform([resume_text] + job_descriptions)
+    similarities = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:]).flatten()
+
+    matched_jobs = []
+    for idx, sim in enumerate(similarities):
+        if sim > 0.1:
+            matched_jobs.append({
+                "job": jobs[idx],
+                "match_percentage": round(sim * 100, 2)
+            })
+    matched_jobs.sort(key=lambda x: x['match_percentage'], reverse=True)
+    return matched_jobs        
 
 @app.route('/')
 def landing():
