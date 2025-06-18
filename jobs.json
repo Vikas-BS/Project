@@ -398,5 +398,105 @@
         "working_hours": "Full-Time",
         "salary": 10.5,
         "skills": ["PLC Programming", "Robot Operating System (ROS)", "Mechanical Design", "Sensors"]
+    },
+    {
+        "job_title": "Administrative Assistant",
+        "company_name": "Office Hub Co.",
+        "location": "Dallas, TX",
+        "job_description": "Provide administrative support, manage scheduling, and assist with office operations.",
+        "experience_years": 2,
+        "working_hours": "Full-Time",
+        "salary": 5,
+        "skills": ["Organization", "Microsoft Office", "Communication", "Time Management"]
+    },
+    {
+        "job_title": "Customer Service Representative",
+        "company_name": "Retail Connect",
+        "location": "Atlanta, GA",
+        "job_description": "Handle customer inquiries, complaints, and provide information about products and services.",
+        "experience_years": 1,
+        "working_hours": "Full-Time",
+        "salary": 4.5,
+        "skills": ["Communication", "Problem Solving", "CRM Systems", "Empathy"]
+    },
+    {
+        "job_title": "Sales Associate",
+        "company_name": "Fashion Trendz",
+        "location": "New York, NY",
+        "job_description": "Assist customers with purchases, maintain stock levels, and promote store sales.",
+        "experience_years": 0,
+        "working_hours": "Part-Time",
+        "salary": 3.5,
+        "skills": ["Sales", "Customer Engagement", "POS Systems", "Product Knowledge"]
+    },
+    {
+        "job_title": "Receptionist",
+        "company_name": "Wellness Clinic",
+        "location": "Phoenix, AZ",
+        "job_description": "Greet visitors, answer calls, and manage appointment scheduling for the clinic.",
+        "experience_years": 1,
+        "working_hours": "Full-Time",
+        "salary": 4,
+        "skills": ["Front Desk Operations", "Phone Etiquette", "Data Entry", "Customer Service"]
+    },
+    {
+        "job_title": "Human Resources Coordinator",
+        "company_name": "PeopleFirst HR",
+        "location": "Chicago, IL",
+        "job_description": "Support HR processes like recruitment, onboarding, and employee records maintenance.",
+        "experience_years": 2,
+        "working_hours": "Full-Time",
+        "salary": 6.5,
+        "skills": ["HR Operations", "Recruitment", "MS Excel", "Employee Records"]
+    },
+    {
+        "job_title": "Event Coordinator",
+        "company_name": "Moments & Co.",
+        "location": "Los Angeles, CA",
+        "job_description": "Plan and execute corporate and social events, coordinating vendors and logistics.",
+        "experience_years": 3,
+        "working_hours": "Full-Time",
+        "salary": 7,
+        "skills": ["Event Planning", "Vendor Management", "Budgeting", "Logistics"]
+    },
+    {
+        "job_title": "Logistics Assistant",
+        "company_name": "FastTrack Logistics",
+        "location": "Houston, TX",
+        "job_description": "Assist in coordinating shipments, tracking deliveries, and maintaining inventory records.",
+        "experience_years": 1,
+        "working_hours": "Full-Time",
+        "salary": 5.5,
+        "skills": ["Inventory Management", "Shipping Coordination", "MS Excel", "Communication"]
+    },
+    {
+        "job_title": "Warehouse Worker",
+        "company_name": "Storage Solutions",
+        "location": "Columbus, OH",
+        "job_description": "Load/unload goods, organize stock, and maintain cleanliness in the warehouse.",
+        "experience_years": 0,
+        "working_hours": "Full-Time",
+        "salary": 4,
+        "skills": ["Physical Fitness", "Inventory Handling", "Forklift Operation", "Time Management"]
+    },
+    {
+        "job_title": "Cashier",
+        "company_name": "Market Mart",
+        "location": "Miami, FL",
+        "job_description": "Handle cash and card transactions at checkout, assist customers and maintain accuracy.",
+        "experience_years": 0,
+        "working_hours": "Part-Time",
+        "salary": 3.5,
+        "skills": ["Cash Handling", "Customer Service", "Attention to Detail", "POS"]
+    },
+    {
+        "job_title": "Hotel Front Desk Clerk",
+        "company_name": "Luxury Stay Hotels",
+        "location": "Orlando, FL",
+        "job_description": "Check-in guests, manage reservations, and provide concierge services.",
+        "experience_years": 1,
+        "working_hours": "Full-Time",
+        "salary": 5,
+        "skills": ["Hospitality", "Reservation Systems", "Guest Services", "Multitasking"]
     }
 ]

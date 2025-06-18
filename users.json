@@ -26,6 +26,18 @@
                 "role": "frontend",
                 "score": 90,
                 "timestamp": "2025-05-23 14:45:29"
+            },
+            {
+                "file": "Vikas_javascript_2025-05-27_20-45-15.pdf",
+                "role": "javascript",
+                "score": 90,
+                "timestamp": "2025-05-27 20:45:16"
+            },
+            {
+                "file": "Vikas_javascript_2025-05-27_20-51-05.pdf",
+                "role": "javascript",
+                "score": 100,
+                "timestamp": "2025-05-27 20:51:05"
             }
         ]
     },
@@ -56,6 +68,18 @@
                 "role": "javascript",
                 "score": 100,
                 "timestamp": "2025-05-23 14:21:09"
+            }
+        ]
+    },
+    "h": {
+        "email": "h@gmail.com",
+        "password": "scrypt:32768:8:1$6te0LYkAAAo9gvDU$89dc70229630aa999f30c860038154fc9bdf2f89dd09e2bb99448c1797145b51cad3aac15f82c5e88f850e8ce779989c3ce7e9d7c22e8d52ef9a0b5721e6cf95",
+        "certificates": [
+            {
+                "file": "h_javascript_2025-05-27_23-33-40.pdf",
+                "role": "javascript",
+                "score": 100,
+                "timestamp": "2025-05-27 23:33:40"
             }
         ]
     }
